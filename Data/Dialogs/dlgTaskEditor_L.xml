@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+
+<Form Caption="Waypoint">
+  <SymbolButton Caption="_X" X="0" Y="-37" Width="150" Height="35" OnClick="OnCloseClicked"/>
+  <Button Name="butAdd" Caption="Insert before" X="155" Y="115" Width="73" Height="35" OnClick="OnAddClicked"/>
+  <Button Name="butTaskProperties" X="2" Y="2" Width="316" Height="35" OnClick="OnTaskPropertiesClicked"/>
+  <Button Name="butBrowse" Caption="Browse" X="241" Y="185" Width="73" Height="35" OnClick="OnBrowseClicked"/>
+
+  <Panel Name="frmDetails" X="0" Y="0" Width="320">
+    <List Name="List" X="0" Y="39" Width="150" Height="-37"/>
+
+    <Panel Name="frmType" X="152" Y="39" Width="167" Height="70" Border="1">
+      <Button Name="butType" X="2" Y="2" Width="163" Height="30" OnClick="OnTypeClicked"/>
+
+      <Widget Name="properties" X="2" Y="35" Width="163" Height="29"/>
+
+    </Panel>
+
+    <Panel Name="frmButtons" X="155" Y="115" Width="76" Height="105" Border="0">
+      <Button Name="butRelocate" Caption="Replace" X="0" Y="35" Width="73" Height="35" OnClick="OnRelocateClicked"/>
+      <Button Name="butRemove" Caption="Delete" X="0" Y="70" Width="73" Height="35" OnClick="OnRemoveClicked"/>
+    </Panel>
+
+  </Panel>
+
+</Form>

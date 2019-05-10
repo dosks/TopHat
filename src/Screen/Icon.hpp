@@ -1,0 +1,79 @@
+/*
+Copyright_License {
+
+  Top Hat Soaring Glide Computer - http://www.tophatsoaring.org/
+  Copyright (C) 2000-2016 The Top Hat Soaring Project
+  A detailed list of copyright holders can be found in the file "AUTHORS".
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+}
+*/
+
+#ifndef XCSOAR_SCREEN_ICON_HPP
+#define XCSOAR_SCREEN_ICON_HPP
+
+#include "Screen/Bitmap.hpp"
+#include "Screen/Point.hpp"
+#include "ResourceId.hpp"
+
+class Canvas;
+
+/**
+ * An icon with a mask which marks transparent pixels.
+ */
+class MaskedIcon {
+protected:
+  Bitmap bitmap;
+
+  PixelSize size;
+
+  RasterPoint origin;
+
+public:
+  const PixelSize &GetSize() const {
+    return size;
+  }
+
+  bool IsDefined() const {
+    return bitmap.IsDefined();
+  }
+
+  void LoadResource(ResourceId id, ResourceId big_id = ResourceId::Null(),
+                    ResourceId bigger_id = ResourceId::Null(),
+                    bool center=true);
+
+  void Reset() {
+    bitmap.Reset();
+  }
+
+  /**
+   * Draws with reference to upper left of icon
+   */
+  void DrawUpperLeft(Canvas &canvas, PixelScalar x, PixelScalar y) const {
+    Draw(canvas, x + size.cx / 2, y + size.cy / 2);
+  }
+  void DrawUpperLeft(Canvas &canvas, RasterPoint pt) const {
+    Draw(canvas, pt.x + size.cx / 2, pt.y + size.cy / 2);
+  }
+
+  void Draw(Canvas &canvas, PixelScalar x, PixelScalar y) const;
+  void Draw(Canvas &canvas, RasterPoint pt) const {
+    Draw(canvas, pt.x, pt.y);
+  }
+
+  void Draw(Canvas &canvas, const PixelRect &rc, bool inverse) const;
+};
+
+#endif

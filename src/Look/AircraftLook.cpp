@@ -1,0 +1,38 @@
+/*
+Copyright_License {
+
+  Top Hat Soaring Glide Computer - http://www.tophatsoaring.org/
+  Copyright (C) 2000-2016 The Top Hat Soaring Project
+  A detailed list of copyright holders can be found in the file "AUTHORS".
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+}
+*/
+
+#include "AircraftLook.hpp"
+#include "Screen/Layout.hpp"
+
+void
+AircraftLook::Initialise()
+{
+  // Note: No scaling needed. Pens are used with CanvasRotateShift, which
+  //       applies Layout::scale.
+  aircraft_pen.Create(1, COLOR_DARK_GRAY);
+  aircraft_simple1_pen.Create(1, COLOR_BLACK);
+  aircraft_simple2_pen.Create(3, COLOR_WHITE);
+
+  canopy_pen.Create(1, DarkColor(COLOR_CYAN));
+  canopy_brush.Create(COLOR_CYAN);
+}

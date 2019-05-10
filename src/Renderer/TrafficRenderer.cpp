@@ -1,0 +1,106 @@
+/*
+ Copyright_License {
+
+  Top Hat Soaring Glide Computer - http://www.tophatsoaring.org/
+  Copyright (C) 2000-2016 The Top Hat Soaring Project
+  A detailed list of copyright holders can be found in the file "AUTHORS".
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+}
+ */
+
+#include "TrafficRenderer.hpp"
+#include "Screen/Canvas.hpp"
+#include "Screen/Layout.hpp"
+#include "Look/TrafficLook.hpp"
+#include "FLARM/Traffic.hpp"
+#include "Math/Screen.hpp"
+#include "Util/Macros.hpp"
+
+void
+TrafficRenderer::Draw(Canvas &canvas, const TrafficLook &traffic_look,
+                      const FlarmTraffic &traffic, const Angle angle,
+                      const FlarmColor color, const RasterPoint pt)
+{
+  // Create point array that will form that arrow polygon
+  RasterPoint Arrow[8];
+
+  const unsigned arrow_size = traffic.IsPowered() ? 8 : 5;
+  // Fill the Arrow array with a normal arrow pointing north
+  // if powered, draw propeller on front of triangle
+  Arrow[0].x = 0;
+  Arrow[0].y = -8;
+  Arrow[1].x = 4;
+  Arrow[1].y = 6;
+  Arrow[2].x = 0;
+  Arrow[2].y = 3;
+  Arrow[3].x = -4;
+  Arrow[3].y = 6;
+  Arrow[4].x = 0;
+  Arrow[4].y = -8;
+  Arrow[5].x = 4;
+  Arrow[5].y = -8;
+  Arrow[6].x = -4;
+  Arrow[6].y = -8;
+  Arrow[7].x = 0;
+  Arrow[7].y = -8;
+
+  // Select brush depending on AlarmLevel
+  switch (traffic.alarm_level) {
+  case FlarmTraffic::AlarmType::LOW:
+  case FlarmTraffic::AlarmType::INFO_ALERT:
+    canvas.Select(traffic_look.warning_brush);
+    break;
+  case FlarmTraffic::AlarmType::IMPORTANT:
+  case FlarmTraffic::AlarmType::URGENT:
+    canvas.Select(traffic_look.alarm_brush);
+    break;
+  case FlarmTraffic::AlarmType::NONE:
+    canvas.Select(traffic_look.safe_brush);
+    break;
+  }
+
+  // Select black pen
+  if (IsDithered())
+    canvas.Select(Pen(Layout::FastScale(2), COLOR_BLACK));
+  else
+    canvas.SelectBlackPen();
+
+  // Rotate and shift the arrow to the right position and angle
+  PolygonRotateShift(Arrow, arrow_size, pt, angle);
+
+  // Draw the arrow
+  canvas.DrawPolygon(Arrow, arrow_size);
+
+  switch (color) {
+  case FlarmColor::GREEN:
+    canvas.Select(traffic_look.team_pen_green);
+    break;
+  case FlarmColor::BLUE:
+    canvas.Select(traffic_look.team_pen_blue);
+    break;
+  case FlarmColor::YELLOW:
+    canvas.Select(traffic_look.team_pen_yellow);
+    break;
+  case FlarmColor::MAGENTA:
+    canvas.Select(traffic_look.team_pen_magenta);
+    break;
+  default:
+    return;
+  }
+
+  canvas.SelectHollowBrush();
+  canvas.DrawCircle(pt.x, pt.y, Layout::FastScale(11));
+}

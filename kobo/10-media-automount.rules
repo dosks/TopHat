@@ -1,0 +1,17 @@
+# /etc/udev/rules.d/10-media-automount.rules
+
+# start at sdb to ignore the system hard drive
+# end at h to ignore stio_wifi_pwr
+KERNEL!="sd[a-h]*", GOTO="media_automount_end"
+
+# filesystem-specific mount options (777/666 dir/file perms for ntfs/vfat)
+ACTION=="add", ENV{ID_FS_TYPE}=="vfat|ntfs", ENV{mount_options}="$env{mount_options}"
+
+# mount all filesystems
+ACTION=="add", ENV{ID_FS_TYPE}!="ntfs", RUN+="/bin/mkdir -p /media/usb_storage", RUN+="/bin/mount -t auto -o %E{mount_options} /dev/%k '/media/usb_storage'"
+
+# clean up after device removal
+ACTION=="remove", RUN+="/bin/umount '/media/usb_storage'", RUN+="/bin/rm -rf /media/usb_storage"
+
+# exit
+LABEL="media_automount_end"

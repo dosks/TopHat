@@ -1,0 +1,778 @@
+============================================================================
+SUMMARY OF NEW FEATURES AND CHANGES
+============================================================================
+Tophat Soaring 2.2.2b_beta
+* Map:
+ - Improve waypoint label placement on map
+ - Optionally hide unit in map labels for arrival height
+* Smooth AAT/TAT Task optimization near start
+* FLARM:
+  - Add propeller to power plane image
+  - Increase font size on map and radar
+* Menus: 
+ - Added "Map layers" menu for airspace, terrain, topo visibility
+ - Add Heading Up map orientation
+ - Display checkmarks in menus to denote selected items
+* Display "2 minutes under start" for US Tasks in Nav Bar
+* Fixes:
+ - Max ballast integration with devices
+ - Pressure altitude reading from devices
+ - Crash during pan
+ - Internet download for METAR/TAF
+* Settings:
+ - Add volume unit for ballast (liters, gallons)
+ - Move GR Arrival Safety Height to "Advanced"
+ - Allow custom smaller fonts
+* Infoboxes:
+ - MC Infobox - show L/D
+ - Add "Help" button
+ - Additional layouts
+ - Alternates - option to display airports only
+ - Add "Bearing difference" infobox
+* Airspace warning: show more information (class / top / bottom)
+* Bluefly glide computer support
+* New snail trail for eink devices
+* In igc file name, use 3 chars of pilot name instead of "AAA"
+* Simulator mode: allow adjustment of IAS, TAS and VGND through Infoboxes
+
+Tophat Soaring 2.2b March 6, 2017
+* Fix Ilec SN10 task integration bug
+
+Tophat Soaring 2.2a Feb 14, 2017
+* Fix possible freeze on dialog box exit
+* Fix PPC2003 Nav Menu and task edit crash
+
+Tophat Soaring 2.2 Jan 28, 2017
+* Stabilize Target Up map orientation when close to target
+* Correct description for infoboxes with "altitude required"
+* Fix altitude calculations for infoboxes "next" and "final"
+* Sync timing of "final glide" message and mode shift with final glide bar
+* Task:
+ - Improve V Task calculation
+ - Auto advance Turn Area Task (AAT) when exit turnpoint
+* Fix bug swapping wind internal and external preference
+* Simulator: glide descent simulated per polar and speed
+* PC Build default screen size 800x600
+* PC Build zoom and menu buttons draw inverse when "down"
+
+Top Hat Soaring 2.1.9 Beta 9/20/2016
+* Task:
+ - Nav Bar: display icon for turnpoint, target or landable in Nav Bar
+ - Nav Bar menu: add menu item to toggle between Target or Center navigation
+   see video: https://youtu.be/_NSX8o9ng5s
+ - Nav Bar: prior to start, show distance to start point center
+ - Task Restart - hide restart popup after 30 seconds (and accept restart)
+ - Add Task open time to task editor (and Close time for European tasks)
+ - Task computer settings - display effective mc for selected speed and vice versa
+ - Task Stats - show time elapsed and remaining for FAI, Racing and MAT tasks
+ - ILEC SN10 - Tophat reads task and targets from SN10
+* FLARM
+ - mini radar - don't cover up North Up compass on map
+ - Teammate infobox appears on all 4 Teammate infoboxes
+ - Teammate infobox has "Goto teammate" button that uses Nav Bar to track teammate
+ - Clear teamcode automatically when entering new code
+* OLC calculation
+ - Enable for Kobo
+ - Standardize OLC infobox look
+* Pan mode
+ - Make buttons transparent
+ - Hide Screens button
+* Text entry - make backspace button larger
+* Map - when click on multiple waypoints, sort by distance and show bearing
+
+Top Hat Soaring 2.1.7 Beta 7/23/2016
+* Kobo - support for Sunblind for Kobo mini 
+    https://youtu.be/27GGbE5KEpg
+* Nav Bar: always show finish altitude for AAT tasks
+* Map items list: increase height of list items to utilize white space
+* Waypoint dialog: Show waypoint name at top of screen instead of title bar
+* Waypoint dialog: abbreviate labels to clarify screen
+* Dialogs: use bold font for values
+* Final glide altitude: calculate using MacCready setting (not task speed)
+* Targets: set to minimum if task impossible due to wind
+* Change default MC to 3.2kts (1.7m/s)
+* Fix overlap of thermal assistant and start, airspace warnings
+* Fix Edit Start Time dialog
+* Fix Task speed Override if set before takeoff
+* Fix bug where android settings are erased after upgrade
+
+Top Hat Soaring 2.1.6 Beta 6/25/2016
+* Use task speed to optimize targets and plan task
+	video: https://youtu.be/xZEQ-dsZn-w
+* Add Task Calculator for Task Speed Infobox
+* Add icons and text to task menu
+* Kobo - power button will shutdown device without prompt
+* Kobo - USB sound support
+	video: https://www.youtube.com/watch?v=FCbkJj9FUbE
+
+Top Hat Soaring 2.1.5b Beta June 19, 2016
+* Improve accuracy of Task Speed Last Hour Infobox
+* Implement task recovery if device fails while flying
+* Bug fixes:
+  - Waypoint list "No match"
+  - Crash when deleting all points in task
+  - Arrival Alt in Task Editor waypoint list
+  - ETE value in Task Target Dialog
+  - Missing Close button on Thermal helper
+
+Top Hat Soaring 2.1.4 Beta June 4, 2016
+* Navigation bar
+  * Customization
+  * Optional navigate to AAT/TAT targets
+  * Optional show glide ratio to destination
+* Task speed and distance calculations improved US and FAI tasks
+* Gradient arrival height setting
+* Fix Map Orientation Target prior to start
+* Airspace voice alert
+* CAI 302 Airspace alarm
+* Kobo Fonts for European languages
+* Sound configuration panel
+* Language support for startup page
+* Fix button widths with icons
+* Support audible non-directional traffic alerts (PCAS)
+* Fix bug where terrain visibility was not saving
+* Polish translation update
+
+Top Hat Soaring 2.1.3 Beta Feb 29, 2016
+* Flarm voice alerts
+* Flarm screen cleanup
+* Kobo sound support with USB speaker
+* Replay mode - minimize mode with restore button
+
+Top Hat Soaring 2.1.2 Beta 
+* Task editor turnpoint default improvements
+* Improvements to customizable fonts
+* Task Restart prompt
+* Configure default startup settings via Advanced Configuration (fly, sim, quick)
+* Auto switch portait / landscape in all dialogs
+* Charts - clean up axis display
+* FAI task.  Show km if not default distance unit
+* Add "Home" icon in waypoint details
+* Local Time Infoboxe allows setting UTC offset
+* Profile manager: add/delete/password protect
+* Show airspace warning at screen top
+* merge XCSoar 6.7.7 - 6.8.2 - latest device drivers and reliability fixes
+  * fix freeze bug when starting without GPS fix
+  * Rubik R-26S polar
+  * map
+    - fix crash in the topography renderer
+  * calculations
+    - fix task progress display after finish achieved (#3657)
+    - wave assistant
+    - use maximum speed configured in plane setup as limit for calculations
+    - use WGS84 earth ellipsoid for distance calculations (#2809)
+    - remove setting "Prefer external wind"
+    - reduce EKF wind latency
+    - fix bogus value in "Nearest Airspace H" InfoBox (#3589)
+    - obey the maximum start speed (#2841)
+    - faster triangle score calculation
+    - fix crash in triangle score calculation (#3576)
+  * devices
+    - remove option "Ignore checksum"
+    - CAI302: add sink tone configuration
+    - LX: implement LXNAV Nano3 task declaration (#3295)
+    - LX: remove support for LX1600 pass-through mode
+    - ATR833: new driver
+    - Volkslogger: support DAeC keyhole declaration
+    - Westerboer VW921: remove buggy driver (#3215)
+    - added TCP port 2000 to portlist (part of #3326)
+    - support LXNAV V7 pass-through mode (#1913, #2808, #2919)
+    - fix wrong baud rate after task declaration (#3654)
+  * Android
+    - fix IOIO connection on Android 4.x (#2959, #3260)
+    - support IOIO-OTG with the Android device in USB host mode
+    - support IOIO over Bluetooth
+    - support Bluetooth LE
+    - timeout for the HTTP client (e.g. LiveTrack24)
+    - support the "escape" key (#3647)
+    - fix all RS232 permissions on Android (#3648)
+    - fix USB-RS232-OTG permissions on Android
+    - timeout for the HTTP client (e.g. LiveTrack24)
+  * Kobo
+    - support Wifi with WEP (#3138)
+    - support open Wifi networks (#3391)
+    - support USB-OTG
+    - support the Kobo Aura screen (#3490)
+    - fix wrong IP address display (#3650)
+    - enable crash dumps in XCSoarData/crash/
+  * Raspberry Pi / Cubieboard
+    - support digit and letter keys (#3611)
+  * Windows
+    - fix the airspace file parser (#3633)
+    - Allow site files download from Internet
+  * data files
+    - store user-edited waypoints and markers in "user.cup"
+  * infoboxes
+    - add "Fin MC0 AltD" infobox (#2824)
+    - add "Next arrow" infobox (#3128)
+    - fix data for OLC infoboxes if "OLC League" is used (#3461)
+  * map
+    - allow "Mark Drop" while panning
+    - airspace labels
+    - sync zoom with cross-section & map
+  * user interface
+    - fix crash while panning the map
+    - improved font renderer
+    - allow horizontal speeds in m/s
+    - use configured coordinate format in waypoint editor
+    - replace custom font support with global "text size" setting
+    - bigger icons on high-dpi screens (#2795, #3267, #3397, #3540)
+    - improved keypad support (#3281)
+    - new translation: Simplified Chinese
+    - save settings after copy&pasting an InfoBox set (#3649)
+  * tracking
+    - new option disables tracking while roaming on the cell network
+    - queue SkyLines tracking fixes while data connection is unavailable
+    - fix SkyLines traffic display on southern hemisphere (#3601)
+    - show SkyLines traffic even if we have no GPS fix yet
+    - show nearby waypoint in SkyLines traffic list
+    - show altitude in list (#3606)
+    - show all nearby traffic (#2814)
+    - pass vehicle name to LiveTrack24
+  * airspace
+    - accept airspaces of class RMZ in OpenAir format files (#3437)
+    - fix wrong AGL height due to longitude east/west wraparound (#3468)
+
+Top Hat Soaring 2.1.1b Beta September 15, 2015
+* Smooth the circle diameter infobox
+* Fix bug in "Ignore task start"
+
+Top Hat Soaring 2.1.1 Beta September 11, 2015
+* Option to ignore task start
+* UI - Use "door" icon for close button
+* Task
+  - Increase max start altitude to 18000
+  - Add Dump ballast menu and notification when ballasted
+  - Fix task speed calculation bug
+* LiveTrack24 - add vehicle name
+* Add "lb" and "lb/ft^2" units
+* Support for joystick control of menus (Android)
+* Kobo
+  - Copies logs to Kobo during device download process
+  - Shows release and max altitude on Power off screen
+  - Support power-slider switch
+  - Improve PC Connect reliability
+
+Top Hat Soaring 2.1 July 4, 2015
+
+Top Hat Soaring 2.0.5 Beta June 26, 2015
+* Infoboxes
+  -Display speed to fly when setting MC
+  -Show seconds in start time below max altitude
+  -Fix wind arrow to optionally display on map
+  -Simulator AGL altitude box updates AGL
+* FLARM
+ - Draw power planes with a propeller
+ - Draw traffic darker on eInk screens
+* Setup screen: show status of attached devices
+* Water ballast
+  - Show "Dump" button on first menu when loaded with water
+  - Display ballast remaining while dump in progress
+  - Display wing loading in either metric or standard units
+* Replay: add Rewind and Fast forward buttons
+* Kobo
+ - Preserve file dates when copying to/from USB stick
+ - Disable OLC calculation
+ - Copy NMEA log files to USB with IGC logs
+* Task Stats: show distance done
+* Map click item list
+ - Remove airfield frequency from list
+ - Display elevation instead of 0
+* Logger: Use plane's ID in log file name instead of AAA
+* Vario: Added vario configuration screen in advanced setup
+
+Top Hat Soaring 2.0.4 Beta April 2015
+*Flarm
+  - Improve radar screen
+  - Allow Infoboxes on radar screen
+* Kobo
+  - Support for USB stick file transfer
+  - Support startup screen in landscape
+  - Improved font readability
+* Airspace
+  - accept airspaces of class RMZ in OpenAir format files
+* Lists - sort in alpha, non-case sensitive
+* Option to show two units in Altitude Infoboxes 
+* Edit waypoints in all lat/long formats
+* Fix Team Code infobox
+* Merge XCSoar 6.7.6
+  * tracking
+   - updated SkyLines server IP
+     * user interface
+   - fix crash when switching pages with cross section (#3012, #3231, #3395)
+  * devices
+   - OpenVario: new device driver
+   - Vaulter: new device driver
+* Fix altitude calculation not respecting thermal drift setting
+	  
+Top Hat Soaring 2.0.3 beta
+Experimental: Adjustable time to detect circling.  Advanced > Computer > Beta
+General
+* Waypoint list: sort by arrival altitude.  Bigger buttons
+* Waypoint list: remember last sort option
+* Italian translation
+* Menu options: explicitly set declutter wp label mode
+* Fix landing detection for loggers with ASI
+* Fix display of device status in quick setup screen
+* Display safety height for terrain in quick setup screen
+* Remove annoying "Too many waypoints" message when in air
+* Remove borders from read-only dialog fields
+* Lower the "Edit start" menu option so it is less prominent
+Infoboxes
+* Home Infoboxes: add Goto button
+* New: Target Infobox: draw bearing arrow, display distance
+* Add Wind to the set of default Infoboxes
+* Add Home Arrival Altitude to default Infoboxes
+Task
+* Navigation bar: navigate (distance, bearing, altitude) to center of AAT cylinders
+* Simplify MAT task dialog and language
+* MAT task display labels & OZs during "Goto/abort"
+* Task: TAT/AAT - Nav bar navigates to TP Center
+* Task: TAT/AAT - Added "Target arrow" Infobox to point to target
+* Task editor: confirm "Remove all waypoints" option
+Map
+* Allow hiding of Final glide bar (advanced settings)
+* Waypoint labels: format LD as n:n (advanced settings)
+* Pan mode: add white background when drawing coordinates
+* Remove decimal precision unless below 5
+Kobo
+* Fix Kobo responsiveness bug
+* Support for Kobo Glo
+* Reformat flights list power off screen
+* Fix crash condition switching screens and zooming
+
+Top Hat Soaring 2.0.1 July 28, 2014
+* Simplified waypoints list, added column header sort
+* Simplified alternates list.  Put data in columns.
+* Fixed landing detection bug (not detecting landing)
+* Simplified MAT Task popup
+* Allow manual adjustment of task start time
+* Show and warn Class F airspace by default
+* Fixed occasional "double turnpoint advance" bug
+* Android - fix crash when switching to other apps
+* Show distance to pan crosshairs
+* Merged XCSoar 6.7.5
+
+Top Hat Soaring 2.0 - 5/20/2014
+* Fix NavBar checkmark with 12-Infobox geometry
+* Fix bug adding turnpoint in pan mode if no terrain file
+
+Top Hat Soaring 1.3.4f beta 5/5/2014
+* "Add Waypoint" menu option to menus
+* Fix english translation bugs
+* Fix Home altitude required Infobox "invalid" bug
+* Fix live tracking host for DHV tracking server, add hanglider type
+ 
+Top Hat Soaring 1.3.4e beta 4/18/2014
+* Fix bug before task start so distance is distance to start waypoint
+* Fix bug so Home is remembered if waypoint file is changed while flying
+* Fix Thermal band display
+* Move "S" screens button away from Final glide bar
+* Fix Kobo landscape bug
+* Configure wind arrow to show on map and/or in infobox
+* Fix menu timeouts
+* Option to show 'S' Screens button on map or menu (menu by default)
+* Map orientation menu indicates current orientation
+* Task editor has delete all option
+* Fix bug in MacCready popup where final glide altitude was trucated
+* Fix bug in Cambridge logger where crash if download flight if first time used
+* Improved readability of task point labels on map
+* Dim outline of Map overlay buttons when in flying mode
+* Use shadow in Map overlay button symbol so clearer on light and dark background
+* Fix bug in Plane polar setup - saving custom polars
+* Enumerate usb hub ports 1-4 for Kobo to support multiple devices (e.g. Flarm and vario)
+* Task editor: add "Append turnpoint" function
+* Support for paraglider, hang glider plane symbol
+* German translations updated
+
+Top Hat Soaring 1.3.4b beta 1/28/2014
+* fix bug with Waypoint list name search "magnifying glass" icon
+
+Top Hat Soaring 1.3.4 beta 1/26/2014
+* Continue to clean up and simplify dialog box user interface
+* Made lists less jerky
+* Display InfoBox set name in "S" button
+* Improved position of map scale arrow 
+* Integration with USB Host Kobo uImage and PC USB connect modes
+* Made wind arrow higher contrast on Kobo, Nook
+* Added display of IP address on Kobo Network screen
+* Simplify ftp file transfer to Kobo XCSoarData
+* Make fonts larger on startup logo screen
+* Add black & white "Simple" snail trail option for eInk
+* Add Home Airport Glider Ratio infobox
+* Add FlymasterB1 driver
+* Add paraglider large wing area support
+* Upgrade icons for hi res displays like the HTC One phone with 1080 x 1920
+* Change Navbar to navigate to target instead of turnpoint for TAT/AAT
+* Nook support for internal TTL port 
+* Integrated TopHat's grayscaling with XCSoar's kobo dithering
+* Fix Nook startup so first time after installation, Top Hat stays in foreground
+* Fix Nook battery manager to fast charge when necessary (e.g. cold weather)
+* Fix display of name of language when "automatic"
+* Fix Mat "add turnpoint" dialog for Est. Finish time
+* Fix Kobo stability issue (landscape and portrait)
+* Fix Kobo fix touch screen bug (#3195, #3211)
+* merge XCSoar 6.7.1
+
+Top Hat Soaring 1.3.3 10/24/2013
+* add checkbox to waypoint list to sort by distance
+* fix KOBO crash in waypoint list
+
+Top Hat Soaring 1.3.2 10/18/2013
+* fix bug loading tasks with turnpoints not in waypoint file
+* fix bug with Task Distance Remaining (AAT Dtgt) Infobox
+
+Top Hat Soaring 1.3.1 10/1/2013
+* support for Kobo mini EInk reader
+
+Top Hat Soaring 1.3 beta 9/17/2013
+* User testing of "multiple screens"
+  - Screen "S" map button to toggle screens
+  - QuickSetup access to screen and infobox customization
+  - Wind settings.  Remove Clear button and Source box
+  - Thermal assistant.  Fixed colors for grayscale devices
+
+* Merge XCSoar 6.7alpha2
+  * replay
+    - fix crash replaying an IGC file with no B record extensions (#3107)
+  * data files
+    - save the previous log file in "xcsoar-old.log"
+  * user interface
+    - new translation: Lithuanian
+  * devices
+    - CAI302: work around transmission errors during IGC file download (#3074)
+  * Android
+    - fix crash in "credits" dialog on Android 4 (#3106)
+    - work around Vivante GPU texture bugs (#1995, #2228, #2990, #2998, #3105)
+  * Kobo
+    - fix passphrase entry in WiFi setup (#3053)
+    - fix compatibility with old Kobo firmware
+  * new target: Kobo e-book readers
+  * user interface
+    - resizable main window
+    - added AutoZoom gesture (up-down)
+    - obsolete configuration pages "devices", "polar", "logger info" removed
+    - new page: "horizon" (#1592)
+    - default page gesture changed right/left sense according to other xc ui interaction pattern
+    - pressing the Escape key in task manager switches to "Close" tab (#2877)
+    - separate font for dialogs (#723, #2806)
+    - repetitive airspace warning sound (#2952)
+    - never close dialogs due to display rotation
+    - disable custom fonts on Altair
+    - improve small dialog font on Altair
+    - fix loading translations on Linux (#2041)
+  * map
+    - terrain countour lines (#2451)
+    - continue loading terrain/topography without GPS fix (#2723)
+    - suppress drawing duplicate topography labels
+    - draw projected path when turning
+    - additional zoom levels (#3037)
+    - global "don't fill airspace" setting (#3047)
+    - fix rendering errors when some airspaces have no border (#3045)
+    - fix distinct page zoom in conjunction with circling zoom (#2907)
+  * infoboxes
+    - new content "Speed task last hour"
+    - new content "Next distance (nominal)"
+    - new content "Takeoff distance" (#3059)
+    - new panel for "Team code" provides quick access to team code settings (#2899)
+    - new content "OLC speed" (#2352)
+  * tasks
+    - custom "start requires arm" setting (#2782)
+    - new option to disable OLC optimisation
+    - MAT: ask user whether to add turn points while flying over it
+    - update the calculator without a GPS fix (#2876)
+    - fix task speed and time estimates before task start (#2876, #2906)
+    - show "arm advance" button when manual arming is necessary (#1729)
+    - support the OLC/DMSt 500km triangle threshold (#2963)
+    - render finish point as achieved when task is finished (#2140)
+    - subtract start/finish cylinder radius from task distance (#2308)
+    - fix parsing of .cup task files
+  * route planner
+    - ignore inactive and acknowledged airspaces (#2866)
+  * calculations
+    - add more weight to zig-zag wind compared to circling wind
+    - enable circling wind calculation in IGC replay (#2672)
+    - fix OLC triangle display (#2775)
+  * waypoint editor
+    - delete waypoint implemented
+    - CUP file support added
+  * devices
+    - enabling/disabling devices on-the-fly
+    - "debug" button
+    - more robust midnight wraparound handling (#2857)
+    - new driver from Cambridge L-Nav
+    - support TCP client connection
+  * Android
+    - support IOIO via OpenAccessory (Android 4.x)
+    - support USB host mode and USB-RS232 adapters on the Nook (#2886)
+    - show Bluetooth name instead of MAC address in device list
+    - enable fast refresh mode on Nook Simple Touch
+  * Analysis
+    - a retrospective task is compiled that summarises waypoints the aircraft has 
+    visited (within 15km radius).  These waypoints are drawn on OLC page of analysis dialog.
+  * data files
+    - default profile is called "default.prf" instead of "xcsoar-registry.prf"
+    - log file is called "xcsoar.log" instead of "xcsoar-startup.log"
+    - fix name truncation when saving a waypoint file on Windows (#3096)
+  * tasks
+    - fix parsing of .cup task files
+  * user interface
+    - reduce flickering in system configuration
+  * map
+    - reduce CPU usage of airspace and topography renderer
+  * tasks
+    - remove keyhole from the BGA start sector zone
+  * devices
+    - enable Nook's internal GPS for mock locations (#2999)
+  * configuration
+    - fix loading home waypoint on longitudes bigger than 90 degrees
+  * map
+    - fix stuttering terrain on Windows CE
+    - fix multi-touch pan gesture (#2684)
+  * calculations
+    - improve robustness of the zig-zag wind algorithm (#2961)
+  * devices
+    - FLARM: work around a Garrecht TRX-1090 firmware bug (#2745, #2749)
+    - LX: faster LXNAV Nano detection over Bluetooth (#2819)
+    - Volkslogger: increase timeout to calculate security (#2910)
+    - fix bogus error message after pressing "Cancel"
+    - show Bluetooth name instead of MAC address in device list
+
+TopHat 1.2 9/12/2013
+* fix Change "Fly" button to "Close" in task manager
+* make pan cross hairs more visible
+* Fix auto flight download from logger on landing
+* Make compass & wind arrow darker for eInk
+
+TopHat 1.1.8 Beta 8/22/2013
+* Remember name of task and display in task manager
+* Draw turnpoint bearing chevron in tips of Nav Bar
+* Clear value when start editing number (e.g. radius)
+* Simplified wind settings screen
+* Draw task OZs with darker lines
+* Move Pan off button to lower right corner
+* Remove decimals from Glide ratio and groundspeed box
+* Make final glide bar label darker
+* Make task point lables black on white
+* Allow long touch to trigger same function as quick touch on map
+* Remove vario bar from right of screen
+
+TopHat 1.1.7 Beta 7/31/2013
+* Task Manager:
+ - Add Back button
+ - Support for FAI and US rules
+* Flarm Traffic: make units friendly for miles
+* Alternates InfoBox fullscreen look
+* Map list - fixed truncated text
+* Map 
+ - smooth dragging of pan 
+ - draw bearing images instead of chevrons on TaskNav bar 
+ - Simplify final glide bar
+* QuickSetup: add nationality for task rules, units and language
+* Plane list: clean up display
+* InfoBoxes:
+ - Add ATC Radial which remembers location
+ - Next Bearing
+  Add no-online contest option, and prevent from consuming CPU
+* Replay - show most recent flights first
+* Add "English" language so we can modify English terms without breaking translations
+ - fixed many terms
+* merge XCSoar 6.6.4
+  * calculations
+   - improve robustness of the zig-zag wind algorithm (#2961)
+  * devices
+   - FLARM: work around a Garrecht TRX-1090 firmware bug (#2745, #2749)
+   - LX: faster LXNAV Nano detection over Bluetooth (#2819)
+   - Volkslogger: increase timeout to calculate security (#2910)
+   - fix bogus error message after pressing "Cancel"
+   - show Bluetooth name instead of MAC address in device list
+
+TopHat 1.0.6 Beta 7/2/2013
+- fixed Nook IOIO battery manager issue
+- fixed IOIO UART reconnect
+- Fullscreen InfoBoxes: Next waypoint, Sim Altitude
+- Configuration: removed "expert" checkbox
+- merge XCSoar 6.6.3
+
+TopHat 1.0.5 Beta 6/28/2013
+* Task manager: 
+ - added numeric keypad for turnpoint radius entry
+ - replaced "Revert" button with "Back" button
+* Added Wind arrow Infobox
+* Added battery manager for Nook
+
+  - fill FAI triangle areas on Windows
+* devices
+  - FLARM: improve task declaration reliability
+  - LX: support Nano firmware 2.10 (#2819)
+* Android
+  - fix compatibility issue with Android 2.2
+  - detect when internal GPS is lost on Android 2.3 and older (#2929)
+* user interface
+  - fix unit display for pressure in flight setup dialog (#2933)
+* data files
+  - added "Pilatus B4" polar
+
+
+TopHat 1.0.4 Beta
+* bearing indicators in Navigation bar
+* rebase to XCSoar 6.6.2
+* IOIO Reconnect
+
+* map
+  - fix misplaced topography labels (#2564)
+  - fix keyboard panning with track up (#2908)
+* infoboxes
+  - ensure that the unit symbol is visible
+  - fix ballast display in vario gauge (#2911)
+  - new content "Speed task last hour"
+  - new content "Next distance (nominal)"
+* tasks
+  - custom "start requires arm" setting (#2782)
+  - new option to disable OLC optimisation
+* waypoint editor
+  - delete waypoint implemented
+  - CUP file support added
+* devices
+  - "debug" button
+
+* tasks
+  - update all settings after task type change
+* devices
+  - Volkslogger: fix IGC file download on Windows CE
+  - EWmicroRecorder: fix corrupt task declaration (#2921)
+  - fix potential crash when garbage is received from device
+  - fix IOIO reconnect
+  - generate G record even when first device has no GPS (#2849)
+* cross section
+  - also display unknown airspace types (#2884)
+* Raspberry Pi
+  - fix instant crash (#2922)
+* Altair
+  - never override data path (#2509)
+* Android
+  - faster startup
+* cross section
+  - fix airspace display after display rotation (#2825)
+* user interface
+  - fix malformed name in airspace warning dialog (#2813)
+  - don't lost focus to waypoint list on Altair (#2835)
+  - don't forget map zoom when returning to map (#2805)
+* devices
+  - indicate duplicate devices in list
+  - allow using more than one TCP/UDP device
+  - fix spurious errors after IOIO baud rate change (#2733, #2754)
+  - K6Bt: fix configured baud rate setup on Android (#2836)
+  - work around Android 2.3 Bluetooth crash bug
+* tasks
+  - prevent moving target out of the cylinder (#2794)
+* configuration
+  - fix regression with polar configuration (#2803)
+* support gcc 4.8
+
+TopHat 1.0.3 Beta June 16, 2013
+* fixed bug where MC popup crashed if no task was defined
+
+TopHat 1.0.2 Beta June 14, 2013
+* fixed logo version number
+* disallow "Page types" for Thermal Asst & Flarm.
+
+TopHat 1.0.1 Beta June 12, 2013
+First release of Top Hat based on XCSoar 6.6 features:
+* Many more device drivers including i2c and LNAV
+
+TopHat 1.0 June 11, 2011
+* Support for IOIO (requires new root - see tophatsoaring.org)
+* Made button placement more consistent
+* Many small UI enhancements
+* Task - Mat: remove "auto add" turnpoint feature when fly over it
+* Infoboxes:
+ - Glide ratio "cruise" - show cruise distance
+ - Home Altitude Req - show home distance
+ - Home: show "not configured" if no home wp is configured
+* Map - allow really quick taps to clear menu
+
+TopHat 0.1.6 Beta 4/17/2013
+* Fix bugs in task speed achieved, time remaining
+* Fix bugs in second takeoff
+* Reduce landing speed threshold 
+
+TopHat 0.1.5 Beta 4/7/2013
+* fix bug in Advanced wind setup
+
+TopHat 0.1.4 Beta 3/30/2013
+* Task
+ - Made Nav Bar thinner
+ - Cleaned up task editor, redundant information
+ - Cleaned up TAT/AT/MAT language
+ - MAT added add/replace tp option
+ - Auto declare task to logger
+
+* Map
+ - Screen orientation menu
+ - Nuked double click
+ - Dialog button consistency improved
+ 
+InfoBoxes
+ - Home altitude infobox.  Allows setting home wp
+ - Wind.  Hide properties if not "Manual"
+ - Help text
+ - GR Average.  Lets pilot change averager period.
+
+* Waypoint list
+ - new search button
+ - show only closest waypoint if too many
+
+ 
+TopHat 0.1.3 Beta 3/7/2013
+
+* Setup
+ - Added Nationality setting controls task rules units and language
+ - Quick Setup screen checks on startup if critical items are not configured.
+ - Added internet download for site files: airspace, maps, waypoints.
+ - Search internet for site files by Continent and State/Country
+
+* Task
+ - New simplified task manager for US tasks - support AT, TAT, MAT
+ - Reset task if land and then takeoff again
+ - Fix bug in Nav Bar so check marks always appear when cylinder entered
+ - Changed language of US tasks per US rules
+ - Support (mostly) US task rules option via Nationality setting
+
+* Main map screen
+ - Removed double click
+ - Renamed "Topo" to "Roads, cities, water"
+ - Made glide amoeba line thicker
+ - Made Nav Bar outline thicker (if background map is color)
+ - Removed display of Ballast and flight mode from bottom of screen
+ - Removed display of logger status.  (Logger always is on in Top Hat)
+
+* General
+ - Repositioned "Close" button on dialogs for consistency.  Lower Left!
+ - Increased default height of controls by 30%
+ - Removed annoying "are you sure" prompts when Cancel options were available
+ - Renamed profile file from ".prf" to ".top" so won't interfere with XCSoar
+ 
+TopHat 0.1.2 Beta 2/16/013
+* Added Startup Assistant with help tips and Quick Setup Screen
+* Add MAT tasks that add turnpoints automatically when you fly into their cylinder
+* Simplified menus; e.g. "Switch screens"
+* Simplified Waypoint Select screen
+
+TopHat 0.1.1b Beta 2/8/2013 (based on XCSoar 6.4.4)
+* Added support for Mat tasks, and interaction when clicking on a tp to add it 
+to the task.
+* Removed many Info Boxes
+* Made fonts larger in lists
+* Added Goto to Nav menu
+* Fixed bug where fonts overlapped in Nav Slider
+
+TopHat 0.1.1 1/22/2013 (based on XCSoar 6.4.4)
+* It has removed many features / configurations / menus to create a simpler 
+  flying experience.
+* Removed gestures
+* Simplified zooming and panning
+* Added "one stop shopping" for all navigation needs with a clickable/slidable 
+  task bar at top of screen that shows destination information
+* Add menu button and zoom buttons to the main screen
+* Simplified InfoBox selection by removing redundant items

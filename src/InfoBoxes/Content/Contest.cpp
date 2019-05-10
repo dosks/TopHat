@@ -1,0 +1,126 @@
+/*
+Copyright_License {
+
+  Top Hat Soaring Glide Computer - http://www.tophatsoaring.org/
+  Copyright (C) 2000-2016 The Top Hat Soaring Project
+  A detailed list of copyright holders can be found in the file "AUTHORS".
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+}
+*/
+
+#include "Contest.hpp"
+#include "InfoBoxes/Data.hpp"
+#include "Interface.hpp"
+#include "Components.hpp"
+#include "UIGlobals.hpp"
+#include "Dialogs/dlgAnalysis.hpp"
+#include "Language/Language.hpp"
+#include "InfoBoxes/Panel/OnlineContest.hpp"
+#include "InfoBoxes/Panel/Panel.hpp"
+#include "Units/Units.hpp"
+#include "InfoBoxes/Panel/OnlineContest.hpp"
+
+#include <tchar.h>
+
+
+static Widget *
+LoadAnalysis8Panel(unsigned id)
+{
+  return LoadOnlineContestPanel(id);
+}
+
+static constexpr
+InfoBoxPanel analysis8_infobox_panels[] = {
+  { N_("Analysis"), LoadAnalysis8Panel },
+  { nullptr, nullptr }
+};
+
+const InfoBoxPanel *
+InfoBoxContentOLC::GetDialogContent()
+{
+  return analysis8_infobox_panels;
+}
+
+void
+InfoBoxContentOLC::Update(InfoBoxData &data)
+{
+  const ComputerSettings &settings_computer =
+    CommonInterface::GetComputerSettings();
+
+   if (!settings_computer.contest.enable || !protected_task_manager) {
+    data.SetInvalid();
+    return;
+  }
+
+  int result_index =
+    (settings_computer.contest.contest == Contest::OLC_LEAGUE) ? 0 : -1;
+
+  const ContestResult& result_olc =
+    CommonInterface::Calculated().contest_stats.GetResult(result_index);
+
+  if (result_olc.score < fixed(1)) {
+    data.SetInvalid();
+    return;
+  }
+
+  // Set Value
+  data.SetValueFromDistance(result_olc.distance);
+
+  data.UnsafeFormatComment(_T("%.1f pts"), (double)result_olc.score);
+}
+
+/*
+static constexpr InfoBoxPanel panels_olc[] = {
+  { N_("OLC"), LoadOnlineContestPanel },
+  { nullptr, nullptr }
+};
+*/
+
+const InfoBoxPanel *
+InfoBoxContentOLCSpeed::GetDialogContent() {
+  return analysis8_infobox_panels;
+}
+
+void
+InfoBoxContentOLCSpeed::Update(InfoBoxData &data)
+{
+  const ComputerSettings &settings_computer =
+    CommonInterface::GetComputerSettings();
+
+  if (!settings_computer.contest.enable || !protected_task_manager) {
+    data.SetInvalid();
+    return;
+  }
+
+  int result_index =
+    (settings_computer.contest.contest == Contest::OLC_LEAGUE) ? 0 : -1;
+
+  const ContestResult& result_olc =
+    CommonInterface::Calculated().contest_stats.GetResult(result_index);
+
+  if (result_olc.score < fixed(1)) {
+    data.SetInvalid();
+    return;
+  }
+
+  // Set Value
+  data.SetValue(_T("%2.0f"),
+                    Units::ToUserTaskSpeed(result_olc.GetSpeed()));
+  // Set Unit
+  data.SetValueUnit(Units::current.task_speed_unit);
+
+  data.UnsafeFormatComment(_T("%.1f pts"), (double)result_olc.score);
+}

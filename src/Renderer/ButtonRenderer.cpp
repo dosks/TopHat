@@ -1,0 +1,138 @@
+/*
+Copyright_License {
+
+  Top Hat Soaring Glide Computer - http://www.tophatsoaring.org/
+  Copyright (C) 2000-2016 The Top Hat Soaring Project
+  A detailed list of copyright holders can be found in the file "AUTHORS".
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+}
+*/
+
+#include "ButtonRenderer.hpp"
+#include "Screen/Canvas.hpp"
+#include "Screen/Layout.hpp"
+#include "Look/ButtonLook.hpp"
+#include "Util/Macros.hpp"
+#include "Asset.hpp"
+
+unsigned
+ButtonFrameRenderer::GetMargin()
+{
+  return Layout::VptScale(HasColors() ? 2 : 1);
+}
+
+void
+ButtonFrameRenderer::DrawButton(Canvas &canvas, PixelRect rc,
+                                bool focused, bool pressed,
+                                bool force_transparent_background) const
+{
+  const ButtonLook::StateLook &_look = focused ? look.focused : look.standard;
+#if !defined(ENABLE_OPENGL) & !defined(KOBO)
+  /** transparent buttons fails with WIN32 GDI */
+  const bool transparent = false;
+#else
+  const bool transparent = look.background_transparent
+      || force_transparent_background;
+#endif
+
+  if (rounded) {
+    rc.right -= 1;
+
+    if (transparent && !pressed) {
+      canvas.Select(pressed ? _look.light_transparent_border_pen :
+          _look.dark_transparent_border_pen);
+      canvas.SelectHollowBrush();
+    } else {
+      canvas.Select(pressed ? _look.light_border_pen :
+          _look.dark_border_pen);
+      canvas.Select(Brush(_look.background_color));
+    }
+
+    canvas.DrawRoundRectangle(rc.left, rc.top,
+                              rc.right, rc.bottom - 1,
+                              Layout::FontScale(12),
+                              Layout::FontScale(12));
+  } else {
+    if (!transparent || pressed)
+      canvas.DrawFilledRectangle(rc, _look.background_color);
+
+    const unsigned margin = GetMargin();
+
+    if (margin < 4) {
+      /* draw 1-pixel lines */
+
+      canvas.Select(pressed ? _look.dark_border_pen : _look.light_border_pen);
+      for (unsigned i = 0; i < margin; ++i)
+        canvas.DrawTwoLinesExact(rc.left + i, rc.bottom - 2 - i,
+                                 rc.left + i, rc.top + i,
+                                 rc.right - 2 - i, rc.top + i);
+
+      canvas.Select(pressed ? _look.light_border_pen : _look.dark_border_pen);
+      for (unsigned i = 0; i < margin; ++i)
+        canvas.DrawTwoLinesExact(rc.left + 1 + i, rc.bottom - 1 - i,
+                                 rc.right - 1 - i, rc.bottom - 1 - i,
+                                 rc.right - 1 - i, rc.top + 1 + i);
+    } else {
+      /* at 4 pixels or more, it's more efficient to draw a filled
+         polygon */
+
+      const RasterPoint p1[] = {
+        RasterPoint(rc.left, rc.top),
+        RasterPoint(rc.right, rc.top),
+        RasterPoint(rc.right - margin, rc.top + margin),
+        RasterPoint(rc.left + margin, rc.top + margin),
+        RasterPoint(rc.left + margin, rc.bottom - margin),
+        RasterPoint(rc.left, rc.bottom),
+      };
+
+      canvas.SelectNullPen();
+      canvas.Select(pressed
+                    ? _look.dark_border_brush
+                    : _look.light_border_brush);
+      canvas.DrawTriangleFan(p1, ARRAY_SIZE(p1));
+
+      const RasterPoint p2[] = {
+        RasterPoint(rc.right, rc.bottom),
+        RasterPoint(rc.right, rc.top),
+        RasterPoint(rc.right - margin, rc.top + margin),
+        RasterPoint(rc.right - margin, rc.bottom - margin),
+        RasterPoint(rc.left + margin, rc.bottom - margin),
+        RasterPoint(rc.left, rc.bottom),
+      };
+
+      canvas.Select(pressed
+                    ? _look.light_border_brush
+                    : _look.dark_border_brush);
+      canvas.DrawTriangleFan(p2, ARRAY_SIZE(p2));
+    }
+  }
+}
+
+PixelRect
+ButtonFrameRenderer::GetDrawingRect(PixelRect rc, bool pressed) const
+{
+  rc.Grow(-2);
+  if (pressed)
+    rc.Offset(1, 1);
+
+  return rc;
+}
+
+unsigned
+ButtonRenderer::GetMinimumButtonWidth() const
+{
+  return Layout::GetMaximumControlHeight();
+}

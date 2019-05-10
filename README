@@ -1,0 +1,60 @@
+Top Hat README
+=============
+
+Top Hat is a tactical glide computer for the Android and Linux operating
+systems.  Although it runs on all the platforms supported by XCSoar such as 
+Window PC (Top Hat is a GUI that runs on the XCSoar platform), we're focusing 
+our time on a GUI that runs on Android and Linux.
+
+This file is aimed at developers.  We don't have a developer manual yet.  If you 
+would like to write one that would be appreciated.  Our general approach to development
+is to design before we code.  Designing can mean many things including creation of
+mockup screens, interactive prototypes, and testing concepts directly with pilots. 
+
+
+Getting the source
+------------------
+
+The Top Hat source code is managed with git (http://git-scm.com/).  It
+can be downloaded with the following command:
+
+ git clone git://github.com/rdunning0823/tophat
+ 
+ Note: because Top Hat is currently rebased regurlarly off XCSoar, the 
+ working branch of Top Hat is "TopHat_master" NOT "master".  Master is 
+ the XCSoar code on which TopHat is based.
+
+To update your repository, type:
+
+ git pull
+
+For more information, please refer to the git documentation.
+
+
+Compiling from source
+---------------------
+
+Please read the developer manual for detailed build instructions.  You
+can download it on the XCSoar website:
+
+ http://www.xcsoar.org/discover/manual.html
+
+---------------------
+Kobo build of Top Hat:
+
+Please refer to the help file kobo/README.kobo.txt in the Top Hat source code
+repository for information about compiling options for the Kobo.
+
+Submitting patches
+------------------
+
+Subscribe to the Top Hat forum:
+
+ http://tophat.freeforums.org
+ 
+Wiki is 
+ http://www.tophatsoaring.org
+
+Use the Design forum to review designs with other developers, pilots and designers.
+Use the Development forum to submit patches or "git pull" requests.
+Patches should explain the impact on the user as well as any technical structure.
