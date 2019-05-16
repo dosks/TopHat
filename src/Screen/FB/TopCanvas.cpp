@@ -197,6 +197,23 @@ TopCanvas::Create(PixelSize new_size,
 
 #ifdef KOBO
   ioctl(fd, MXCFB_SET_UPDATE_SCHEME, UPDATE_SCHEME_QUEUE_AND_MERGE);
+
+  switch(DetectKoboModel()) {
+  case KoboModel::UNKNOWN:
+  case KoboModel::MINI:
+  case KoboModel::TOUCH:
+  case KoboModel::GLO:
+  case KoboModel::AURA:
+    frame_sync = false;
+    break;
+
+  case KoboModel::TOUCH2:
+  case KoboModel::GLO_HD:
+  case KoboModel::AURA2:
+    frame_sync = true;
+    break;
+
+  };
 #endif
 
   const auto width = ::GetWidth(vinfo), height = ::GetHeight(vinfo);
@@ -444,6 +461,9 @@ TopCanvas::Flip()
 
 
 #ifdef KOBO
+  if (frame_sync)
+    Wait();
+
   epd_update_marker++;
 
   struct mxcfb_update_data epd_update_data = {
@@ -451,7 +471,13 @@ TopCanvas::Flip()
       0, 0, buffer.width, buffer.height
     },
 
-    WAVEFORM_MODE_AUTO,
+    uint32_t(enable_dither &&
+             (/* use A2 mode only on some Kobo models */
+              DetectKoboModel() == KoboModel::TOUCH2 ||
+              DetectKoboModel() == KoboModel::GLO_HD ||
+              DetectKoboModel() == KoboModel::AURA2)
+             ? WAVEFORM_MODE_A2
+             : WAVEFORM_MODE_AUTO),
     UPDATE_MODE_FULL, // PARTIAL
     epd_update_marker,
     TEMP_USE_AMBIENT,
