@@ -55,9 +55,13 @@ static constexpr struct {
   const char *id;
   KoboModel model;
 } kobo_model_ids[] = {
-  { "SN-N514", KoboModel::AURA },
   { "SN-N705", KoboModel::MINI },
   { "SN-N905", KoboModel::TOUCH },
+  { "SN-613A4", KoboModel::GLO },
+  { "SN-N437", KoboModel::GLOHD },
+  { "SN-N5875", KoboModel::TOUCH2 },
+  { "SN-N514", KoboModel::AURA },
+  { "SN-N2498", KoboModel::CLARAHD }
 };
 
 static KoboModel
