@@ -208,6 +208,10 @@ else
       ln -s /mnt/onboard/XCSoarData /XCSoarData;
     fi
 
+# For kobo clara, init and KoboMenu are starting too early,
+# /proc not populated, touch device not working in KoboMenu. So delay a little.
+usleep 100000
+
     # launch user script
     if [ -f /mnt/onboard/XCSoarData/kobo/init.sh ]; then
       source /mnt/onboard/XCSoarData/kobo/init.sh

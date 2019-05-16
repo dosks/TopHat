@@ -30,7 +30,12 @@ enum class KoboModel {
   UNKNOWN,
   MINI,
   TOUCH,
+  TOUCH2,
   AURA,
+  AURA2,
+  GLO,
+  GLO_HD,
+  CLARA_HD,
 };
 
 gcc_const
